@@ -39,11 +39,9 @@ public class UserResource {
     public Response createUser(CreateUserRequest userRequest) {
         Set<ConstraintViolation<CreateUserRequest>> violations = validator.validate(userRequest);
         if (!violations.isEmpty()) {
-            final ResponseError responseError = ResponseError.createFromValidation(violations);
-            return Response
-                    .status(Status.BAD_REQUEST)
-                    .entity(responseError)
-                    .build();
+            return ResponseError
+                    .createFromValidation(violations)
+                    .withStatusCode(ResponseError.UNPROCESSABLE_ENTITY_STATUS);
         }
 
         final User user = new User();
@@ -53,7 +51,9 @@ public class UserResource {
 
         userRepository.persist(user);
 
-        return Response.ok(user).build();
+        return Response.status(Status.CREATED)
+                .entity(user)
+                .build();
     }
 
     @GET
@@ -75,7 +75,7 @@ public class UserResource {
         }
 
         userRepository.delete(user);
-        return Response.ok().build();
+        return Response.noContent().build();
     }
 
     @PUT
@@ -91,7 +91,7 @@ public class UserResource {
 
         user.setName(createUserRequest.getName());
         user.setAge(createUserRequest.getAge());
-        return Response.ok().build();
+        return Response.noContent().build();
     }
 
 }

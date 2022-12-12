@@ -6,12 +6,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
+import javax.ws.rs.core.Response;
 
 public class ResponseError {
 
     private String message;
 
     private Collection<FieldError> errors;
+
+    public static Integer UNPROCESSABLE_ENTITY_STATUS = 422;
 
     public ResponseError(String message, Collection<FieldError> errors) {
         this.message = message;
@@ -32,6 +35,10 @@ public class ResponseError {
 
         var responseError = new ResponseError(message, errors);
         return responseError;
+    }
+
+    public Response withStatusCode(Integer statusCode) {
+        return Response.status(statusCode).entity(this).build();
     }
 
     public void setErrors(Collection<FieldError> errors) {
