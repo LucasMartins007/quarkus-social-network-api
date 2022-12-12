@@ -8,6 +8,13 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.ws.rs.core.Response;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class ResponseError {
 
     private String message;
@@ -15,11 +22,6 @@ public class ResponseError {
     private Collection<FieldError> errors;
 
     public static Integer UNPROCESSABLE_ENTITY_STATUS = 422;
-
-    public ResponseError(String message, Collection<FieldError> errors) {
-        this.message = message;
-        this.errors = errors;
-    }
 
     /**
      * @param <T>
@@ -41,19 +43,4 @@ public class ResponseError {
         return Response.status(statusCode).entity(this).build();
     }
 
-    public void setErrors(Collection<FieldError> errors) {
-        this.errors = errors;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Collection<FieldError> getErrors() {
-        return errors;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

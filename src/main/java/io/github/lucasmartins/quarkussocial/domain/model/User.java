@@ -8,8 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
+@Entity 
+@Getter
+@Setter 
 @Table(name = "users")
 public class User extends PanacheEntityBase {
 
@@ -22,31 +26,5 @@ public class User extends PanacheEntityBase {
     
     @Column(name = "age")
     private Integer age;
-
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return this.age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-    
     
 }

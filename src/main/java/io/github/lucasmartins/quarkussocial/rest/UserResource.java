@@ -2,7 +2,6 @@ package io.github.lucasmartins.quarkussocial.rest;
 
 import java.util.Set;
 
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -20,19 +19,15 @@ import io.github.lucasmartins.quarkussocial.domain.repository.UserRepository;
 import io.github.lucasmartins.quarkussocial.rest.dto.CreateUserRequest;
 import io.github.lucasmartins.quarkussocial.rest.dto.ResponseError;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import lombok.RequiredArgsConstructor;
 
 @Path("/users")
+@RequiredArgsConstructor
 public class UserResource {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private Validator validator;
-
-    @Inject
-    public UserResource(UserRepository userRepository, Validator validator) {
-        this.userRepository = userRepository;
-        this.validator = validator;
-    }
+    private final Validator validator;
 
     @POST
     @Transactional
