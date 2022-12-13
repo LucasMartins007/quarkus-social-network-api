@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest.dto;
+package io.github.lucasmartins.quarkussocial.rest.dto.response;
 
 import java.time.LocalDateTime;
 

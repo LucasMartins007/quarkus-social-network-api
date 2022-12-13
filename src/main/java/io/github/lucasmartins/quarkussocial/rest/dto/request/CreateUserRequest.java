@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest.dto;
+package io.github.lucasmartins.quarkussocial.rest.dto.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

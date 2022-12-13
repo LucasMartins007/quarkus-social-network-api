@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest.dto;
+package io.github.lucasmartins.quarkussocial.rest.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

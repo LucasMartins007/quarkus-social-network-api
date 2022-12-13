@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest;
+package io.github.lucasmartins.quarkussocial.rest.resource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +17,8 @@ import io.github.lucasmartins.quarkussocial.domain.model.Post;
 import io.github.lucasmartins.quarkussocial.domain.model.User;
 import io.github.lucasmartins.quarkussocial.domain.repository.PostRepository;
 import io.github.lucasmartins.quarkussocial.domain.repository.UserRepository;
-import io.github.lucasmartins.quarkussocial.rest.dto.CreatePostRequest;
-import io.github.lucasmartins.quarkussocial.rest.dto.PostResponse;
+import io.github.lucasmartins.quarkussocial.rest.dto.request.CreatePostRequest;
+import io.github.lucasmartins.quarkussocial.rest.dto.response.PostResponse;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Sort;
 import io.quarkus.panache.common.Sort.Direction;
