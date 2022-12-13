@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import io.github.lucasmartins.quarkussocial.domain.model.Post;
 import io.github.lucasmartins.quarkussocial.domain.model.User;
+import io.github.lucasmartins.quarkussocial.domain.repository.FollowerRepository;
 import io.github.lucasmartins.quarkussocial.domain.repository.PostRepository;
 import io.github.lucasmartins.quarkussocial.domain.repository.UserRepository;
 import io.github.lucasmartins.quarkussocial.rest.dto.request.CreatePostRequest;
@@ -33,6 +35,8 @@ public class PostResource {
     private final UserRepository userRepository;
 
     private final PostRepository postRepository;
+
+    private final FollowerRepository followerRepository;
 
     @POST
     @Transactional
@@ -54,10 +58,31 @@ public class PostResource {
     }
 
     @GET
-    public Response listPosts(@PathParam("userId") Long userId) {
+    public Response listPosts(@PathParam("userId") Long userId, @HeaderParam("followerId") Long followerId) {
         final User user = userRepository.findById(userId);
         if (user == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        if (followerId == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+            .entity("You forgot the header followerId.")
+            .build();
+
+        }
+        final User follower = userRepository.findById(followerId);
+        if (follower == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+            .entity("FollowerId doesn't exist.")
+            .build();
+
+        }
+
+        final boolean follows = followerRepository.follows(follower, user);
+        if (!follows) {
+            return Response
+                .status(Response.Status.FORBIDDEN)
+                .entity("You doesn't have permission to access this resource.")
+                .build();    
         }
 
         PanacheQuery<Post> query = postRepository.find("user", Sort.by("dateTime", Direction.Descending), user);
