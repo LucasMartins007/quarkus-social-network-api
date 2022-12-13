@@ -19,8 +19,8 @@ import javax.ws.rs.core.Response.Status;
 
 import io.github.lucasmartins.quarkussocial.domain.model.User;
 import io.github.lucasmartins.quarkussocial.domain.repository.UserRepository;
+import io.github.lucasmartins.quarkussocial.rest.dto.error.ResponseError;
 import io.github.lucasmartins.quarkussocial.rest.dto.request.CreateUserRequest;
-import io.github.lucasmartins.quarkussocial.rest.dto.response.ResponseError;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import lombok.RequiredArgsConstructor;
 

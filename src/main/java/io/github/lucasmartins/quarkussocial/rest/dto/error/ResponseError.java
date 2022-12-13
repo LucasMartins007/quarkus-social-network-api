@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest.dto.response;
+package io.github.lucasmartins.quarkussocial.rest.dto.error;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.ws.rs.core.Response;
 
-import io.github.lucasmartins.quarkussocial.rest.dto.FieldError;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

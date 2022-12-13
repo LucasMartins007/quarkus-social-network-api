@@ -1,4 +1,4 @@
-package io.github.lucasmartins.quarkussocial.rest.dto;
+package io.github.lucasmartins.quarkussocial.rest.dto.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

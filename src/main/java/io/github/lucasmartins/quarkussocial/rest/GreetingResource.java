@@ -1,4 +1,4 @@
-package io.github.lucasmartins;
+package io.github.lucasmartins.quarkussocial.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
