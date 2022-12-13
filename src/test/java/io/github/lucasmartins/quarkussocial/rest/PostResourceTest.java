@@ -68,7 +68,7 @@ public class PostResourceTest {
         followerRepository.persist(follower);
     }
 
-    User createUser(String name) {
+    private User createUser(String name) {
         final User user = new User();
         user.setAge(25);
         user.setName(name);
